@@ -11,10 +11,10 @@ As stated in the very short description of InventoryService, Knit is used as a d
 The following creates a Swords inventory for the provided player upon joining the game, with the starter item being the Red Blade. The Red Blade would automatically be equipped in the inventory. And of course, InventoryService uses the Knit framework, so we're going to need to add that bit.
 ```lua
 -- Get Knit, the framework used for InventoryService:
-local Knit = require(somewhere.Knit)
+local Knit = require(game.ReplicatedStorage.Knit)
 
 -- Load the InventoryService module from some folder, as well as any other modules you have:
-Knit.AddServices(somewhere.Services)
+Knit.AddServices(game.ServerScriptService.Services)
 
 -- Start Knit:
 Knit.Start():andThen(function()
@@ -25,7 +25,7 @@ end):catch(warn)
 local InventoryService = Knit.GetService("InventoryService")
 
 -- Create an Inventory for a player upon joining:
-game:GetService("Players").PlayerAdded:Connect(function(player)
+game.Players.PlayerAdded:Connect(function(player)
   InventoryService:CreateInventory(player, "Swords", "Red Blade")
 end
 ```
