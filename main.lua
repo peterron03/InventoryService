@@ -10,15 +10,11 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
 -- KNIT --
-local Knit = require(ReplicatedStorage:WaitForChild("Packages"):WaitForChild("Knit"))
+local Knit = require(ReplicatedStorage.Packages.Knit)
 local Signal = require(Knit.Util.Signal)
 
--- MODULES --
-local Utilities = ReplicatedStorage:WaitForChild("Utilities")
-local Settings = require(Utilities:WaitForChild("Settings"))
-
 -- DATASTORES --
-local DataStore = DataStoreService:GetDataStore("INVENTORY_TESTING_" .. Settings.DataStoreVersion)
+local DataStore = DataStoreService:GetDataStore("INVENTORY_SERVICE_DATA")
 
 local Inventory = Knit.CreateService {
 	Name = "InventoryService",
