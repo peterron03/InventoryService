@@ -8,7 +8,7 @@ To put it simply, InventoryService is a server-sided table of data that you can 
 As stated in the very short description of InventoryService, Knit is used as a dependency. If you're unfamiliar with Knit, I highly suggest watching [this](https://www.youtube.com/watch?v=0Ty2ojfdOnA) video, which is a tutorial made by [@sleitnick](https://github.com/Sleitnick), the creator of Knit. Though InventoryService can be used without much knowledge of Knit, it's recommended you understand Knit first.
 
 ## Examples
-The following creates a Swords inventory for the provided player upon joining the game, with the starter item being the Red Blade. The Red Blade would automatically be equipped in the inventory. And of course, InventoryService uses the Knit framework, so we're going to need to add that bit.
+The following creates a Swords inventory for the provided player when their data loads, using the `.DataLoaded` event, which happens almost immediately after the player joins the game, with the starter item being the Red Blade. The Red Blade would automatically be equipped in the inventory. And of course, InventoryService uses the Knit framework, so we're going to need to add that bit.
 ```lua
 -- Get Knit, the framework used for InventoryService:
 local Knit = require(game.ReplicatedStorage.Knit)
@@ -24,8 +24,8 @@ end):catch(warn)
 -- Get the InventoryService:
 local InventoryService = Knit.GetService("InventoryService")
 
--- Create an Inventory for a player upon joining:
-game.Players.PlayerAdded:Connect(function(player)
+-- Create an Inventory for a player when their data is loaded:
+InventoryService.DataLoaded:Connect(function(player)
   InventoryService:CreateInventory(player, "Swords", "Red Blade")
 end)
 ```
