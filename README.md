@@ -1,14 +1,28 @@
 # InventoryService
-A server-sided data system for Roblox inventories.
+An Inventory system for Roblox, built using the Knit framework.
 
 ## What exactly is InventoryService?
 To put it simply, InventoryService is a server-sided table of data that you can add to, remove from, or get from. It simplifies your typical Roblox inventories and turns them into a service with functions and events, as well as saves your data using Roblox's DataStoreService. InventoryService is by no means a top-tier must-have, but it's something I made for myself and decided to share with the world for anyone that might find it interesting or useful.
 
+## What is Knit?
+As stated in the very short description of InventoryService, Knit is used as a dependency. If you're unfamiliar with Knit, I highly suggest watching [this](https://www.youtube.com/watch?v=0Ty2ojfdOnA) video, which is a tutorial made by [@sleitnick](https://github.com/Sleitnick), the creator of Knit. Though InventoryService can be used without much knowledge of Knit, it's recommended you understand Knit first.
+
 ## Examples
-The following creates a Swords inventory for the provided player upon joining the game, with the starter item being the Red Blade. The Red Blade would automatically be equipped in the inventory.
+The following creates a Swords inventory for the provided player upon joining the game, with the starter item being the Red Blade. The Red Blade would automatically be equipped in the inventory. And of course, InventoryService uses the Knit framework, so we're going to need to add that bit.
 ```lua
+-- Get Knit, the framework used for InventoryService:
+local Knit = require(game.ReplicatedStorage.Knit)
+
+-- Load the InventoryService module from some folder, as well as any other modules you have:
+Knit.AddServices(game.ServerScriptService.Services)
+
+-- Start Knit:
+Knit.Start():andThen(function()
+	print("Knit started")
+end):catch(warn)
+
 -- Get the InventoryService:
-local InventoryService = require(somewhere.InventoryService)
+local InventoryService = Knit.GetService("InventoryService")
 
 -- Create an Inventory for a player upon joining:
 game.Players.PlayerAdded:Connect(function(player)
@@ -31,7 +45,7 @@ end
 ```
 Now we have an Awesome Sword in the player's Swords inventory! But, wait, we have to let both the server and client know in case anything needs updated, such as UI, statistics, leaderboards, etc. Luckily, we have events to help us out with that.
 ```lua
--- In a LocalScript:
+-- In a LocalScript, assuming Knit has been set up on the client, as well:
 InventoryService.ItemAdded:Connect(function(inventoryName, itemName)
   -- add item to UI on the client, however you have it set up
 end)
