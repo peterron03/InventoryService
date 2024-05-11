@@ -27,7 +27,7 @@ local InventoryService = Knit.GetService("InventoryService")
 -- Create an Inventory for a player upon joining:
 game.Players.PlayerAdded:Connect(function(player)
   InventoryService:CreateInventory(player, "Swords", "Red Blade")
-end
+end)
 ```
 Now, I understand what some of you might be thinking if you know anything about InventoryService, and you're right. Using the `:CreateInventory` function isn't necessary, as making changes to inventories automatically creates one if it doesn't already exist. However, it's optional to use for better organization and overall ease if you'd like.
 
@@ -36,12 +36,12 @@ Either way, with the inventory created, making changes to it is super easy. Belo
 -- RemoteEvent to buy an item:
 local RemoteEvent = somewhere.RemoteEvent
 
--- Adding the item to the inventory if the player has enough Currency to afford it:
+-- Adding the item to the inventory if the player has enough currency to afford it:
 RemoteEvent.OnServerEvent:Connect(function(player, inventoryName, itemName)
   if player.leaderstats.Currency.Value >= somewhere[itemName].Price then
     InventoryService:AddItem(player, itemType, itemName)
   end
-end
+end)
 ```
 Now we have an Awesome Sword in the player's Swords inventory! But, wait, we have to let both the server and client know in case anything needs updated, such as UI, statistics, leaderboards, etc. Luckily, we have events to help us out with that.
 ```lua
