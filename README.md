@@ -31,7 +31,7 @@ end
 ```
 Now, I understand what some of you might be thinking if you know anything about InventoryService, and you're right. Using the `:CreateInventory` function isn't necessary, as making changes to inventories automatically creates one if it doesn't already exist. However, it's optional to use for better organization and overall ease if you'd like.
 
-Either way, with the inventory created, making changes to it is super easy. Below is an example of adding a new sword to the inventory after a player tries to buy it, using a RemoteEvent and a Currency leaderstat.
+Either way, with the inventory created, making changes to it is super easy. Below is an example of adding a new sword to the inventory after a player tries to buy it, using a RemoteEvent and a Currency leaderstat. (Note: If you'd like a Currency system as well, you can check out my [CurrencyService](https://github.com/peterron03/CurrencyService), which is set up a lot like InventoryService and works well with it.)
 ```lua
 -- RemoteEvent to buy an item:
 local RemoteEvent = somewhere.RemoteEvent
