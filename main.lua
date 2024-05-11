@@ -60,6 +60,12 @@ function Inventory:CreateInventory(player : Player, inventoryName : string, star
 end
 
 function Inventory:DestroyInventory(player : Player, inventoryName : string)
+	local equippedItem = self:GetEquipped(player, inventoryName)
+	
+	if equippedItem then
+		self:UnequipItem(player, inventoryName, equippedItem)
+	end
+	
 	self.PlayerData[player].Inventories[inventoryName] = nil
 	
 	self.DataChanged:Fire(player, self.PlayerData[player])
