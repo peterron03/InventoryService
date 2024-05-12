@@ -196,8 +196,6 @@ function Inventory:LoadData(player : Player)
 end
 
 function Inventory:SaveData(player : Player)
-	if not self.PlayerData[player] or not tonumber(self.PlayerData[player]) then return end
-
 	local success, err = pcall(function()
 		DataStore:SetAsync(player.UserId .. "_INVENTORY_DATA", tonumber(self.PlayerData[player]))
 	end)
