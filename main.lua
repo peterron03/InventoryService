@@ -197,7 +197,7 @@ end
 
 function Inventory:SaveData(player : Player)
 	local success, err = pcall(function()
-		DataStore:SetAsync(player.UserId .. "_INVENTORY_DATA", tonumber(self.PlayerData[player]))
+		DataStore:SetAsync(player.UserId .. "_INVENTORY_DATA", self.PlayerData[player])
 	end)
 
 	if not success then
