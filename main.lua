@@ -48,11 +48,15 @@ function Inventory:CreateInventory(player : Player, inventoryName : string, star
 			table.insert(self.PlayerData[player].Inventories[inventoryName], starterItem)
 			self.PlayerData[player].Equipped[inventoryName] = starterItem
 
+			self.ItemEquipped:Fire(player, inventoryName, starterItem)
 			self.ItemAdded:Fire(player, inventoryName, starterItem)
-			self.InventoryChanged:Fire(player, inventoryName, self.PlayerData[player].Inventories[inventoryName])
+			self.Client.ItemEquipped:Fire(player, inventoryName, starterItem)
+			self.Client.ItemAdded:Fire(player, inventoryName, starterItem)
 		end
 
+		self.InventoryChanged:Fire(player, inventoryName, self.PlayerData[player].Inventories[inventoryName])
 		self.DataChanged:Fire(player, self.PlayerData[player])
+		self.Client.InventoryChanged:Fire(player, inventoryName, self.PlayerData[player].Inventories[inventoryName])
 		self.Client.DataChanged:Fire(player, self.PlayerData[player])
 	end
 
