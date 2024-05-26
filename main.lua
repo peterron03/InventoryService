@@ -78,6 +78,11 @@ function Inventory:DestroyInventory(player : Player, inventoryName : string)
 	return self.PlayerData[player]
 end
 
+function Inventory:ResetInventory(player : Player, inventoryName : string, starterItem : string?)
+	self:DestroyInventory(player, inventoryName)
+	return self:CreateInventory(player, inventoryName, starterItem)
+end
+
 function Inventory:IsItemEquipped(player : Player, inventoryName : string, itemName : string) : boolean
 	return self.PlayerData[player].Equipped[inventoryName] == itemName
 end
